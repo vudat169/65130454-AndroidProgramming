@@ -19,4 +19,28 @@
         android:layout_height="120dp"
         android:src="@mipmap/ic_launcher"
         android:layout_marginBottom="20dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Họ và tên: Vũ Đoàn Thành Đạt"
+        android:textSize="18sp"
+        android:padding="5dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MSSV: 65130454"
+        android:textSize="18sp"
+        android:padding="5dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lớp: 65.CNTT-2"
+        android:textSize="18sp"
+        android:padding="5dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Địa chỉ: Nha Trang, Khánh Hòa"
+        android:textSize="18sp"
+        android:padding="5dp" />
 </LinearLayout>
