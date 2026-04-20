@@ -18,7 +18,7 @@ public class ChucNang2 extends AppCompatActivity {
         // Danh sách 10 bài hát
         String[] data = {
                 "Tiến Quân Ca",
-                "Vũ Đoàn Thành Đạt - 65130454", 
+                "Vũ Đoàn Thành Đạt - 65130454",
                 "Trường Sơn Đông Trường Sơn Tây",
                 "Hò Kéo Pháo",
                 "Giải Phóng Miền Nam",
