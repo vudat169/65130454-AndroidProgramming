@@ -28,5 +28,19 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        btn2.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ChucNang2.class);
+            startActivity(intent);
+        });
+
+        btn3.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ChucNang3.class);
+            startActivity(intent);
+        });
+
+        btn4.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ChucNang4.class);
+            startActivity(intent);
+        });
     }
 }
