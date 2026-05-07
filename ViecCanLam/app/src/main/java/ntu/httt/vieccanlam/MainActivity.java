@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,6 +24,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     List<TASKS> lstVCL;
+    taskRVadapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,21 +40,33 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference databaseReference = database.getReference("TASKS");
         //lắng nghe và xử lý
         lstVCL = new ArrayList<TASKS>();
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //lấy dữ liệu
-                for(DataSnapshot obj: snapshot.getChildren() ){
-                    TASKS task = obj.getValue(TASKS.class);
-                    lstVCL.add(task);
-                    Log.w("VCL app","tên việc: "+ task.getName() );
-                }
-            }
+        databaseReference.addValueEventListener(ngheFB);
+        //
+        RecyclerView recyclerView = findViewById(R.id.rcvVCL);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        adapter = new taskRVadapter(lstVCL);
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
+    //
+    ValueEventListener ngheFB = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            //lấy dữ liệu
+            for(DataSnapshot obj: snapshot.getChildren() ){
+                TASKS task = obj.getValue(TASKS.class);
+                lstVCL.add(task);
+//                Log.w("VCL app","tên việc: "+ task.getName() );
+            }
+            adapter.notifyDataSetChanged();
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    };
 }
